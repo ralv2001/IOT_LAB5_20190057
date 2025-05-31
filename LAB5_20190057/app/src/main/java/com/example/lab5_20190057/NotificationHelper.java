@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.os.Build;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -177,16 +178,8 @@ public class NotificationHelper {
         // Programar alarma repetitiva
         long intervalMillis = habit.getFrequencyHours() * 60 * 60 * 1000L;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            // Para Android 6.0+ usar setExactAndAllowWhileIdle para mayor precisión
-            alarmManager.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    firstNotification.getTimeInMillis(),
-                    intervalMillis,
-                    pendingIntent
-            );
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // Para Android 4.4+ usar setExact
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Para Android 8.0+ usar setExactAndAllowWhileIdle para mayor precisión
             alarmManager.setRepeating(
                     AlarmManager.RTC_WAKEUP,
                     firstNotification.getTimeInMillis(),
@@ -194,13 +187,7 @@ public class NotificationHelper {
                     pendingIntent
             );
         } else {
-            // Para versiones anteriores usar set normal
-            alarmManager.setRepeating(
-                    AlarmManager.RTC_WAKEUP,
-                    firstNotification.getTimeInMillis(),
-                    intervalMillis,
-                    pendingIntent
-            );
+            Toast.makeText(context, "La versión de Android no es compatible", Toast.LENGTH_SHORT).show();
         }
 
         // Log para debugging

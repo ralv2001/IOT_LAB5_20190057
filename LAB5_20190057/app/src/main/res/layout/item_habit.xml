@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/category_icon_background"
-                android:backgroundTint="@android:color/holo_blue_dark" />
+                android:backgroundTint="@color/indigo_dark" />
 
             <ImageView
                 android:id="@+id/ivCategoryIcon"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cada 8 horas"
                 android:textSize="14sp"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/indigo_dark"
                 android:layout_marginTop="4dp"
                 android:drawableStart="@drawable/ic_schedule"
                 android:drawablePadding="4dp"

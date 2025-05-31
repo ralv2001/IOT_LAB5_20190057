@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:orientation="horizontal"
-            android:background="@android:color/holo_green_dark"
+            android:background="@color/indigo_dark"
             android:gravity="center_vertical"
             android:padding="16dp"
             android:elevation="4dp">
@@ -59,7 +59,7 @@
                 android:text="Información Personal"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/holo_green_dark"
+                android:textColor="@color/indigo_light"
                 android:layout_marginBottom="16dp" />
 
             <!-- Nombre del usuario -->
@@ -105,7 +105,7 @@
                 android:text="Notificaciones Motivacionales"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/holo_green_dark"
+                android:textColor="@color/indigo_light"
                 android:layout_marginBottom="16dp" />
 
             <!-- Mensaje motivacional personalizado -->
@@ -191,7 +191,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="Valores por defecto"
                     android:textSize="14sp"
-                    android:backgroundTint="@android:color/darker_gray"
+                    android:backgroundTint="@color/indigo_dark"
                     android:textColor="@android:color/white" />
 
                 <Button
@@ -202,7 +202,7 @@
                     android:layout_marginStart="8dp"
                     android:text="Guardar Cambios"
                     android:textSize="14sp"
-                    android:backgroundTint="@android:color/holo_green_dark"
+                    android:backgroundTint="@color/indigo_light"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>

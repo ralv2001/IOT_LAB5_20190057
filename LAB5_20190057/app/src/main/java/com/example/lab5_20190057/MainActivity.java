@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     FileInputStream fis = new FileInputStream(imageFile);
                     Bitmap bitmap = BitmapFactory.decodeStream(fis);
                     ivProfileImage.setImageBitmap(bitmap);
+                    ivProfileImage.setPadding(0, 0, 0, 0);
                     fis.close();
                 } catch (IOException e) {
                     e.printStackTrace();
