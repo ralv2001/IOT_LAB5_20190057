@@ -98,6 +98,14 @@ public class Habit implements Serializable {
                 return R.drawable.ic_work;
             case "salud":
                 return R.drawable.ic_health;
+            case "meditación":
+                return R.drawable.ic_meditation;
+            case "estudio":
+                return R.drawable.ic_study;
+            case "creatividad":
+                return R.drawable.ic_creativity;
+            case "social":
+                return R.drawable.ic_social;
             default:
                 return R.drawable.ic_default_habit;
         }
@@ -117,6 +125,14 @@ public class Habit implements Serializable {
                 return android.R.color.darker_gray;
             case "salud":
                 return android.R.color.holo_red_dark;
+            case "meditación":
+                return android.R.color.holo_purple; // Color morado para meditación
+            case "estudio":
+                return android.R.color.holo_blue_dark; // Mismo color que lectura
+            case "creatividad":
+                return android.R.color.holo_orange_light; // Color naranja claro para creatividad
+            case "social":
+                return android.R.color.holo_green_light; // Color verde claro para social
             default:
                 return android.R.color.holo_blue_bright;
         }
