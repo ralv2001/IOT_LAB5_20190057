@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="habit_categories">
+        <item>Ejercicio</item>
+        <item>Alimentación</item>
+        <item>Sueño</item>
+        <item>Lectura</item>
+        <item>Trabajo</item>
+        <item>Salud</item>
+        <item>Meditación</item>
+        <item>Estudio</item>
+        <item>Creatividad</item>
+        <item>Social</item>
+    </string-array>
+</resources>

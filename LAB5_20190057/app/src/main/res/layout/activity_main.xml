@@ -1,19 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Saludo dinámico -->
+        <TextView
+            android:id="@+id/tvGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Hola, Usuario!"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Mensaje motivacional -->
+        <TextView
+            android:id="@+id/tvMotivationalMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¡Hoy es un gran día para formar buenos hábitos!"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:background="@drawable/message_background" />
+
+        <!-- Imagen personalizada -->
+        <ImageView
+            android:id="@+id/ivProfileImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/image_placeholder_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_add_photo"
+            android:contentDescription="Imagen de perfil"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toca para cambiar imagen"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Botón Ver mis hábitos -->
+        <Button
+            android:id="@+id/btnViewHabits"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Ver mis hábitos"
+            android:textSize="16sp"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp"
+            android:drawableStart="@drawable/ic_list"
+            android:drawablePadding="8dp" />
+
+        <!-- Botón Configuraciones -->
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Configuraciones"
+            android:textSize="16sp"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_settings"
+            android:drawablePadding="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>
