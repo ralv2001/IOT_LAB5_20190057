@@ -23,8 +23,12 @@
             android:layout_height="wrap_content"
             android:text="¡Hola, Usuario!"
             android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
+            android:fontFamily="@font/helvetica_neue_bold"
+            android:textColor="@color/greeting_text"
+            android:shadowColor="@color/greeting_stroke"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="0.3"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="16dp" />
 
@@ -35,8 +39,10 @@
             android:layout_height="wrap_content"
             android:text="¡Hoy es un gran día para formar buenos hábitos!"
             android:textSize="16sp"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:textColor="@color/motivational_text"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:lineSpacingMultiplier="1.2"
             android:layout_marginBottom="24dp"
             android:padding="12dp" />
 
@@ -76,7 +82,8 @@
             android:layout_height="wrap_content"
             android:text="Toca para cambiar imagen"
             android:textSize="12sp"
-            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/helvetica_neue_light"
+            android:textColor="@color/hint_text"
             android:layout_marginBottom="32dp" />
 
         <!-- Botón Ver mis hábitos -->
@@ -86,8 +93,9 @@
             android:layout_height="56dp"
             android:text="VER MIS HÁBITOS"
             android:textSize="16sp"
+            android:fontFamily="@font/helvetica_neue_medium"
             android:backgroundTint="@color/white"
-            android:textColor="@color/custom_gray"
+            android:textColor="@color/button_text"
             android:layout_marginBottom="16dp"
             android:drawableStart="@drawable/ic_list"
             android:drawablePadding="8dp" />
@@ -99,8 +107,9 @@
             android:layout_height="56dp"
             android:text="CONFIGURACIONES"
             android:textSize="16sp"
+            android:fontFamily="@font/helvetica_neue_medium"
             android:backgroundTint="@color/indigo_light"
-            android:textColor="@android:color/white"
+            android:textColor="@color/settings_button_text"
             android:drawableStart="@drawable/ic_settings"
             android:drawablePadding="8dp" />
 

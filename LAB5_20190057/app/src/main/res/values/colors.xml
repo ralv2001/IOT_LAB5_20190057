@@ -6,4 +6,10 @@
     <color name="warn">#dc3545</color>
     <color name="custom_gray">#3F414E</color>
     <color name="indigo_dark">#586894</color>
+    <color name="greeting_text">#E6E7F2</color>
+    <color name="greeting_stroke">#FFECCC</color>
+    <color name="motivational_text">#EBEAEC</color>
+    <color name="button_text">#3F414E</color>
+    <color name="settings_button_text">#F6F1FB</color>
+    <color name="hint_text">#B8B5C1</color>
 </resources>
