@@ -85,7 +85,7 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewH
                     Toast.makeText(context, "Hábito eliminado", Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton("Cancelar", null)
-                .setIcon(R.drawable.ic_delete)
+                .setCancelable(true)
                 .show();
     }
 
@@ -106,7 +106,8 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewH
         if (position >= 0 && position < habitsList.size()) {
             habitsList.remove(position);
             notifyItemRemoved(position);
-            notifyItemRangeChanged(position, habitsList.size());
+            // Actualizar todo el RecyclerView para evitar espacios vacíos
+            notifyDataSetChanged();
         }
     }
 

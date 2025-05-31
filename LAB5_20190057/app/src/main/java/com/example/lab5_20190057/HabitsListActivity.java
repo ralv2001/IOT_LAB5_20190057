@@ -151,7 +151,7 @@ public class HabitsListActivity extends AppCompatActivity implements HabitsAdapt
                 habitsList.add(newHabit);
                 habitsAdapter.notifyItemInserted(habitsList.size() - 1);
 
-                // Guardar cambios
+                // *** ESTE ES EL GUARDADO AUTOMÁTICO ***
                 saveHabits();
 
                 // Programar notificación para el nuevo hábito

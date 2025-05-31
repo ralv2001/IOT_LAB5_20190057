@@ -128,7 +128,7 @@ public class CreateHabitActivity extends AppCompatActivity {
                 },
                 selectedTime.get(Calendar.HOUR_OF_DAY),
                 selectedTime.get(Calendar.MINUTE),
-                true // Formato 24 horas
+                false // Cambiar de true a false para formato 12 horas con AM/PM
         );
 
         timePickerDialog.show();
