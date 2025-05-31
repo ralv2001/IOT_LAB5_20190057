@@ -20,6 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
     private Button btnSaveSettings;
     private Button btnResetDefaults;
     private ImageView btnBack;
+    private NotificationHelper notificationHelper;
 
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "HabitsAppPrefs";
@@ -59,6 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void initializeSharedPreferences() {
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        notificationHelper = new NotificationHelper(this);
     }
 
     private void loadCurrentSettings() {
@@ -105,6 +107,9 @@ public class SettingsActivity extends AppCompatActivity {
         editor.putString(KEY_NOTIFICATION_MESSAGE, notificationMessage);
         editor.putInt(KEY_NOTIFICATION_FREQUENCY, notificationFrequency);
         editor.apply();
+
+        // Programar notificaciones motivacionales con la nueva configuración
+        notificationHelper.scheduleMotivationalNotifications(notificationMessage, notificationFrequency);
 
         Toast.makeText(this, "Configuraciones guardadas exitosamente", Toast.LENGTH_SHORT).show();
 

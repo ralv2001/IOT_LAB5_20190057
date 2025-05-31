@@ -26,6 +26,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Build;
+import androidx.core.app.NotificationManagerCompat;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int GALLERY_REQUEST_CODE = 1001;
@@ -42,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_USER_NAME = "user_name";
     private static final String KEY_MOTIVATIONAL_MESSAGE = "motivational_message";
     private static final String KEY_PROFILE_IMAGE = "profile_image_path";
+
+    private NotificationHelper notificationHelper;
+    private static final int NOTIFICATION_PERMISSION_CODE = 1003;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeSharedPreferences() {
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        notificationHelper = new NotificationHelper(this);
     }
 
     private void loadUserData() {
@@ -128,12 +137,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestPermissions() {
+        // Permisos de almacenamiento
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     PERMISSION_REQUEST_CODE);
         }
+
+        // Permisos de notificaciones (Android 13+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        NOTIFICATION_PERMISSION_CODE);
+            }
+        }
+
+        // Configurar notificaciones motivacionales si ya están configuradas
+        setupMotivationalNotifications();
     }
 
     private void openGallery() {
@@ -209,5 +232,32 @@ public class MainActivity extends AppCompatActivity {
         editor.putString(KEY_MOTIVATIONAL_MESSAGE, newMessage);
         editor.apply();
         tvMotivationalMessage.setText(newMessage);
+    }
+
+    private void setupMotivationalNotifications() {
+        String notificationMessage = sharedPreferences.getString("notification_message", "");
+        int notificationFrequency = sharedPreferences.getInt("notification_frequency", 0);
+
+        if (!notificationMessage.isEmpty() && notificationFrequency > 0) {
+            notificationHelper.scheduleMotivationalNotifications(notificationMessage, notificationFrequency);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permisos de almacenamiento concedidos", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == NOTIFICATION_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permisos de notificaciones concedidos", Toast.LENGTH_SHORT).show();
+                setupMotivationalNotifications();
+            } else {
+                Toast.makeText(this, "Las notificaciones están deshabilitadas. Puedes habilitarlas en Configuración.", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

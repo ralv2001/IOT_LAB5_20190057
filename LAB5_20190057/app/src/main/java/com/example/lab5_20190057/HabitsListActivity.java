@@ -33,6 +33,7 @@ public class HabitsListActivity extends AppCompatActivity implements HabitsAdapt
     private static final String PREFS_NAME = "HabitsAppPrefs";
     private static final String KEY_HABITS_LIST = "habits_list";
 
+    private NotificationHelper notificationHelper;
     private Gson gson;
 
     @Override
@@ -58,6 +59,7 @@ public class HabitsListActivity extends AppCompatActivity implements HabitsAdapt
     private void initializeData() {
         habitsList = new ArrayList<>();
         gson = new Gson();
+        notificationHelper = new NotificationHelper(this);
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
     }
 
@@ -91,6 +93,13 @@ public class HabitsListActivity extends AppCompatActivity implements HabitsAdapt
                 habitsList.clear();
                 habitsList.addAll(loadedHabits);
                 habitsAdapter.notifyDataSetChanged();
+
+                // Programar notificaciones para todos los hábitos cargados
+                for (Habit habit : habitsList) {
+                    if (habit.isActive()) {
+                        notificationHelper.scheduleHabitNotification(habit);
+                    }
+                }
             }
         }
     }
@@ -114,6 +123,9 @@ public class HabitsListActivity extends AppCompatActivity implements HabitsAdapt
 
     @Override
     public void onHabitDelete(Habit habit, int position) {
+        // Cancelar las notificaciones del hábito
+        notificationHelper.cancelHabitNotification(habit.getId());
+
         // Eliminar el hábito de la lista
         habitsList.remove(position);
         habitsAdapter.notifyItemRemoved(position);
@@ -142,6 +154,9 @@ public class HabitsListActivity extends AppCompatActivity implements HabitsAdapt
                 // Guardar cambios
                 saveHabits();
 
+                // Programar notificación para el nuevo hábito
+                notificationHelper.scheduleHabitNotification(newHabit);
+
                 // Actualizar UI
                 updateUI();
 
@@ -157,6 +172,9 @@ public class HabitsListActivity extends AppCompatActivity implements HabitsAdapt
         // Recargar hábitos cuando regresemos a esta actividad
         loadHabits();
         updateUI();
+
+        // Reprogramar notificaciones por si se reinició el dispositivo
+        rescheduleAllNotifications();
     }
 
     // Método público para agregar hábitos (útil para testing o llamadas externas)
@@ -175,5 +193,16 @@ public class HabitsListActivity extends AppCompatActivity implements HabitsAdapt
     // Método para verificar si hay hábitos
     public boolean hasHabits() {
         return !habitsList.isEmpty();
+    }
+
+    // Método para reprogramar todas las notificaciones (útil cuando se reinicia la app)
+    private void rescheduleAllNotifications() {
+        for (Habit habit : habitsList) {
+            if (habit.isActive()) {
+                // Cancelar notificación existente y reprogramar
+                notificationHelper.cancelHabitNotification(habit.getId());
+                notificationHelper.scheduleHabitNotification(habit);
+            }
+        }
     }
 }
