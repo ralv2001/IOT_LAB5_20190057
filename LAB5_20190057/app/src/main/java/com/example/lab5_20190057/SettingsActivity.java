@@ -119,22 +119,61 @@ public class SettingsActivity extends AppCompatActivity {
 
     private boolean validateFields() {
         // Validar nombre de usuario
-        if (etUserName.getText().toString().trim().isEmpty()) {
+        String userName = etUserName.getText().toString().trim();
+        if (userName.isEmpty()) {
             etUserName.setError("Por favor ingresa tu nombre");
+            etUserName.requestFocus();
+            return false;
+        }
+        if (userName.length() > 30) {
+            etUserName.setError("El nombre no puede exceder 30 caracteres");
+            etUserName.requestFocus();
+            return false;
+        }
+        if (userName.length() < 2) {
+            etUserName.setError("El nombre debe tener al menos 2 caracteres");
+            etUserName.requestFocus();
+            return false;
+        }
+        // Validar que solo contenga letras, espacios y algunos caracteres especiales
+        if (!userName.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s'-]+$")) {
+            etUserName.setError("El nombre solo puede contener letras y espacios");
             etUserName.requestFocus();
             return false;
         }
 
         // Validar mensaje motivacional
-        if (etMotivationalMessage.getText().toString().trim().isEmpty()) {
+        String motivationalMessage = etMotivationalMessage.getText().toString().trim();
+        if (motivationalMessage.isEmpty()) {
             etMotivationalMessage.setError("Por favor ingresa un mensaje motivacional");
+            etMotivationalMessage.requestFocus();
+            return false;
+        }
+        if (motivationalMessage.length() > 150) {
+            etMotivationalMessage.setError("El mensaje motivacional no puede exceder 150 caracteres");
+            etMotivationalMessage.requestFocus();
+            return false;
+        }
+        if (motivationalMessage.length() < 10) {
+            etMotivationalMessage.setError("El mensaje motivacional debe tener al menos 10 caracteres");
             etMotivationalMessage.requestFocus();
             return false;
         }
 
         // Validar mensaje de notificación
-        if (etNotificationMessage.getText().toString().trim().isEmpty()) {
+        String notificationMessage = etNotificationMessage.getText().toString().trim();
+        if (notificationMessage.isEmpty()) {
             etNotificationMessage.setError("Por favor ingresa un mensaje para las notificaciones");
+            etNotificationMessage.requestFocus();
+            return false;
+        }
+        if (notificationMessage.length() > 120) {
+            etNotificationMessage.setError("El mensaje de notificación no puede exceder 120 caracteres");
+            etNotificationMessage.requestFocus();
+            return false;
+        }
+        if (notificationMessage.length() < 10) {
+            etNotificationMessage.setError("El mensaje de notificación debe tener al menos 10 caracteres");
             etNotificationMessage.requestFocus();
             return false;
         }
@@ -149,8 +188,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         try {
             int frequency = Integer.parseInt(frequencyText);
-            if (frequency <= 0 || frequency > 24) {
-                etNotificationFrequency.setError("La frecuencia debe estar entre 1 y 24 horas");
+            if (frequency <= 0) {
+                etNotificationFrequency.setError("La frecuencia debe ser mayor a 0");
+                etNotificationFrequency.requestFocus();
+                return false;
+            }
+            if (frequency > 24) {
+                etNotificationFrequency.setError("La frecuencia no puede exceder 24 horas");
                 etNotificationFrequency.requestFocus();
                 return false;
             }

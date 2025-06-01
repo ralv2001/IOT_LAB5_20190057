@@ -1,118 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@drawable/bg_main_habits"
-    tools:context=".MainActivity"
-    android:gravity="center">
+    tools:context=".MainActivity">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="24dp"
-        android:gravity="center_horizontal">
+        android:layout_height="wrap_content">
 
-        <!-- Saludo dinámico -->
-        <TextView
-            android:id="@+id/tvGreeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¡Hola, Usuario!"
-            android:textSize="28sp"
-            android:fontFamily="@font/helvetica_neue_bold"
-            android:textColor="@color/greeting_text"
-            android:shadowColor="@color/greeting_stroke"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="0.3"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Mensaje motivacional -->
-        <TextView
-            android:id="@+id/tvMotivationalMessage"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¡Hoy es un gran día para formar buenos hábitos!"
-            android:textSize="16sp"
-            android:fontFamily="@font/helvetica_neue_light"
-            android:textColor="@color/motivational_text"
-            android:textAlignment="center"
-            android:lineSpacingMultiplier="1.2"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp" />
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="20dp"
+            android:gravity="center_horizontal">
 
-        <!-- Imagen personalizada -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="32dp"
-            android:elevation="10dp"
-            android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/indigo_dark">
+            <!-- Saludo dinámico -->
+            <TextView
+                android:id="@+id/tvGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Hola, Usuario!"
+                android:textSize="28sp"
+                android:fontFamily="@font/helvetica_neue_bold"
+                android:textColor="@color/greeting_text"
+                android:shadowColor="@color/greeting_stroke"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="0.3"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="16dp" />
 
-            <LinearLayout
+            <!-- Mensaje motivacional -->
+            <TextView
+                android:id="@+id/tvMotivationalMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="8dp">
+                android:text="¡Hoy es un gran día para formar buenos hábitos!"
+                android:textSize="16sp"
+                android:fontFamily="@font/helvetica_neue_light"
+                android:textColor="@color/motivational_text"
+                android:textAlignment="center"
+                android:lineSpacingMultiplier="1.2"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp" />
 
-                <ImageView
-                    android:id="@+id/ivProfileImage"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/image_placeholder_background"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_add_photo"
-                    android:contentDescription="Imagen de perfil"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="24dp"/>
+            <!-- Imagen personalizada -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="32dp"
+                android:elevation="10dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/indigo_dark">
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp">
 
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/ivProfileImage"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@drawable/image_placeholder_background"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_add_photo"
+                        android:contentDescription="Imagen de perfil"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="24dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Toca para cambiar imagen"
-            android:textSize="12sp"
-            android:fontFamily="@font/helvetica_neue_light"
-            android:textColor="@color/hint_text"
-            android:layout_marginBottom="32dp" />
+                </LinearLayout>
 
-        <!-- Botón Ver mis hábitos -->
-        <Button
-            android:id="@+id/btnViewHabits"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="VER MIS HÁBITOS"
-            android:textSize="16sp"
-            android:fontFamily="@font/helvetica_neue_medium"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/button_text"
-            android:layout_marginBottom="16dp"
-            android:drawableStart="@drawable/ic_list"
-            android:drawablePadding="8dp" />
+            </androidx.cardview.widget.CardView>
 
-        <!-- Botón Configuraciones -->
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="CONFIGURACIONES"
-            android:textSize="16sp"
-            android:fontFamily="@font/helvetica_neue_medium"
-            android:backgroundTint="@color/indigo_light"
-            android:textColor="@color/settings_button_text"
-            android:drawableStart="@drawable/ic_settings"
-            android:drawablePadding="8dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toca para cambiar imagen"
+                android:textSize="12sp"
+                android:fontFamily="@font/helvetica_neue_light"
+                android:textColor="@color/hint_text"
+                android:layout_marginBottom="32dp" />
 
-    </LinearLayout>
+            <!-- Botón Ver mis hábitos -->
+            <Button
+                android:id="@+id/btnViewHabits"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="VER MIS HÁBITOS"
+                android:textSize="16sp"
+                android:fontFamily="@font/helvetica_neue_medium"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/button_text"
+                android:layout_marginBottom="16dp"
+                android:drawableStart="@drawable/ic_list"
+                android:drawablePadding="8dp" />
 
-</LinearLayout>
+            <!-- Botón Configuraciones -->
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="CONFIGURACIONES"
+                android:textSize="16sp"
+                android:fontFamily="@font/helvetica_neue_medium"
+                android:backgroundTint="@color/indigo_light"
+                android:textColor="@color/settings_button_text"
+                android:drawableStart="@drawable/ic_settings"
+                android:drawablePadding="8dp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</ScrollView>

@@ -161,8 +161,19 @@ public class CreateHabitActivity extends AppCompatActivity {
 
     private boolean validateFields() {
         // Validar nombre del hábito
-        if (etHabitName.getText().toString().trim().isEmpty()) {
+        String habitName = etHabitName.getText().toString().trim();
+        if (habitName.isEmpty()) {
             etHabitName.setError("Por favor ingresa el nombre del hábito");
+            etHabitName.requestFocus();
+            return false;
+        }
+        if (habitName.length() > 50) {
+            etHabitName.setError("El nombre del hábito no puede exceder 50 caracteres");
+            etHabitName.requestFocus();
+            return false;
+        }
+        if (habitName.length() < 3) {
+            etHabitName.setError("El nombre del hábito debe tener al menos 3 caracteres");
             etHabitName.requestFocus();
             return false;
         }
@@ -177,8 +188,13 @@ public class CreateHabitActivity extends AppCompatActivity {
 
         try {
             int frequency = Integer.parseInt(frequencyText);
-            if (frequency <= 0 || frequency > 168) { // Máximo 168 horas = 1 semana
-                etFrequencyHours.setError("La frecuencia debe estar entre 1 y 168 horas");
+            if (frequency <= 0) {
+                etFrequencyHours.setError("La frecuencia debe ser mayor a 0");
+                etFrequencyHours.requestFocus();
+                return false;
+            }
+            if (frequency > 168) { // Máximo 168 horas = 1 semana
+                etFrequencyHours.setError("La frecuencia no puede exceder 168 horas (1 semana)");
                 etFrequencyHours.requestFocus();
                 return false;
             }

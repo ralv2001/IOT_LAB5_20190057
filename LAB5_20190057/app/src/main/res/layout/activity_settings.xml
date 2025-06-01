@@ -74,8 +74,9 @@
                     android:id="@+id/etUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tu nombre"
+                    android:hint="Tu nombre (máx. 30 caracteres)"
                     android:maxLines="1"
+                    android:maxLength="30"
                     android:inputType="textPersonName|textCapWords" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -92,8 +93,9 @@
                     android:id="@+id/etMotivationalMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mensaje motivacional"
+                    android:hint="Mensaje motivacional (máx. 150 caracteres)"
                     android:maxLines="3"
+                    android:maxLength="150"
                     android:inputType="textCapSentences|textMultiLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -120,8 +122,9 @@
                     android:id="@+id/etNotificationMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mensaje para notificaciones"
+                    android:hint="Mensaje para notificaciones (máx. 120 caracteres)"
                     android:maxLines="2"
+                    android:maxLength="120"
                     android:inputType="textCapSentences|textMultiLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -162,6 +165,7 @@
                         android:hint="4"
                         android:inputType="number"
                         android:maxLines="1"
+                        android:maxLength="2"
                         android:textAlignment="center" />
 
                 </com.google.android.material.textfield.TextInputLayout>
